@@ -1,8 +1,8 @@
 
 run:
 
-  gradle build
-  java  -jar build/libs/spring-boot-hello-jdbc-postgresql-0.2.0.jar
+     gradle build
+     java  -jar build/libs/spring-boot-hello-jdbc-postgresql-0.2.0.jar
 
 
 
