@@ -1,21 +1,18 @@
 package hello;
 
 public class Customer {
-    private long id;
-    private String firstName, lastName;
+    private String id, naz;
 
-    public Customer(long id, String firstName, String lastName) {
+    public Customer(String id, String naz) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.naz = naz;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Partner[id='%s', naziv='%s']",
+                id, naz);
     }
 
-    // getters & setters omitted for brevity
 }

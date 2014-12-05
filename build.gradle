@@ -28,7 +28,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework:spring-jdbc")
-    compile("com.h2database:h2")
+    // compile("com.h2database:h2")
+    compile("org.postgresql:postgresql:9.2-1003-jdbc4")
     testCompile("junit:junit")
 }
 

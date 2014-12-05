@@ -13,35 +13,36 @@ public class Application {
     public static void main(String args[]) {
         // simple DS for test (not for production!)
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-        dataSource.setDriverClass(org.h2.Driver.class);
-        dataSource.setUsername("sa");
-        dataSource.setUrl("jdbc:h2:mem");
-        dataSource.setPassword("");
+        dataSource.setDriverClass(org.postgresql.Driver.class);
+        dataSource.setUrl("jdbc:postgresql://f18-test.bring.out.ba/test_0018");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("admin");
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        System.out.println("Creating tables");
-        jdbcTemplate.execute("drop table customers if exists");
-        jdbcTemplate.execute("create table customers(" +
-                "id serial, first_name varchar(255), last_name varchar(255))");
+        //System.out.println("Creating tables");
+        //jdbcTemplate.execute("drop table customers if exists");
+        //jdbcTemplate.execute("create table customers(" +
+        //        "id serial, first_name varchar(255), last_name varchar(255))");
 
-        String[] names = "John Woo;Jeff Dean;Josh Bloch;Josh Long".split(";");
+	System.out.println("Brisem fmk.partn");
+        jdbcTemplate.execute("delete from fmk.partn");
+        String[] names = "00001 John_Woo;00002 Jeff_Dean;00003 Josh_Bloch;00004 Josh_Long".split(";");
         for (String fullname : names) {
             String[] name = fullname.split(" ");
             System.out.printf("Inserting customer record for %s %s\n", name[0], name[1]);
             jdbcTemplate.update(
-                    "INSERT INTO customers(first_name,last_name) values(?,?)",
+                    "INSERT INTO fmk.partn(id,naz) values(?,?)",
                     name[0], name[1]);
         }
 
-        System.out.println("Querying for customer records where first_name = 'Josh':");
+        System.out.println("Querying for customer records where id = '00001':");
         List<Customer> results = jdbcTemplate.query(
-                "select * from customers where first_name = ?", new Object[] { "Josh" },
+                "select * from fmk.partn where id = ?", new Object[] { "00001" },
                 new RowMapper<Customer>() {
                     @Override
                     public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return new Customer(rs.getLong("id"), rs.getString("first_name"),
-                                rs.getString("last_name"));
+                        return new Customer(rs.getString("id"), rs.getString("naz"));
                     }
                 });
 
