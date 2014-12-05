@@ -15,8 +15,8 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'gs-relational-data-access'
-    version =  '0.1.0'
+    baseName = 'spring-boot-hello-jdbc-postgresql'
+    version =  '0.2.0'
 }
 
 repositories {
